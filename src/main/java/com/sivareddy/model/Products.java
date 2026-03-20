@@ -22,4 +22,5 @@ public class Products {
     private int quantity;
     private String skuCode;
     private LocalDateTime createdDtTime;
+    private LocalDateTime expireDtTime;
 }
