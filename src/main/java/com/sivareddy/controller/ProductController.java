@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,5 +33,9 @@ public class ProductController {
     @GetMapping("/fetchProducts")
     public ResponseEntity<List<Products>> fetchProducts(){
         return ResponseEntity.ok(productService.fetchProducts());
+    }
+    @ExceptionHandler
+    public ResponseEntity<Map> handleGlobalException(RuntimeException ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("errorMsg", ex.getMessage()));
     }
 }
