@@ -37,10 +37,12 @@ public class ProductService {
         BeanUtils.copyProperties(dto,data,"id");
     }
     public Products getProducts(int id){
-        return productsRepo.findById(id).orElseThrow(() -> new RuntimeException("DATA NOT FOUND!"));
+        return productsRepo.findById(id).orElseThrow(() -> new RuntimeException("DATA NOT FOUND!!!"));
     }
     public List<Products> fetchProducts(){
         return productsRepo.findAll(Sort.by(Sort.Direction.DESC,"createdDtTime"));
     }
-
+    public List<Products> getProductsBasedOnIds(List<Integer> ids){
+        return productsRepo.findByIdIn(ids,Sort.by(Sort.Direction.DESC,"createdDtTime"));
+    }
 }

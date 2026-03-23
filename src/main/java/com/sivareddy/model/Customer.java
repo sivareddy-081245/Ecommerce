@@ -1,5 +1,6 @@
 package com.sivareddy.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,22 +10,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
-public class Products {
+public class Customer {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String productName;
-    private Double productCost;
-    private Integer quantity;
-    private String skuCode;
+    private String customerName;
+    private String mobileNum;
+    private String emailAdd;
     private LocalDateTime createdDtTime;
-    private LocalDateTime expireDtTime;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dateOfBirth;
+    private String address;
 }
